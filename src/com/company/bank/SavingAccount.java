@@ -21,22 +21,15 @@ public class SavingAccount extends Account{
 
     @Override
     public void transfer(Account account, int amount) {
-        if (amount>this.balance){
-            System.out.println("Не достаточно средств");
+        if ((balance+amount) >0) {
+            System.out.println("Зачисление средств невозможно, уменьшите сумму на " + (balance+amount) + " Руб.");
             token = false;
-        }else{
-            account.aadMany(amount);
-            if (!account.getToken()) {
-                System.out.println("Операция отменена");
-            }else {
-                this.pay(amount);
-                if (!this.token){
-                    account.pay(amount);
-                    System.out.println("Операция отменена");
-                }
-            }
+        }else {
+            this.balance += amount;
+            System.out.println("Баланс пополнен");
             token = true;
         }
+
     }
 
     @Override

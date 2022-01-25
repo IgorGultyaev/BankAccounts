@@ -27,9 +27,9 @@ public class CreditAccount extends Account{
 
     @Override
     public void aadMany(int amount) {
-        if ((this.balance+amount) >0) {
+        if ((balance+amount) >0) {
             System.out.println("Зачисление средств невозможно, уменьшите сумму на " + (balance+amount) + " Руб.");
-            token = true;
+            token = false;
         }else {
             this.balance += amount;
             System.out.println("Баланс пополнен");

@@ -13,21 +13,24 @@ public class CheckingAccount extends Account{
             System.out.println("Недостаточно среств на счету");
             token = false;
         }else {
+            this.balance -= summa;
             System.out.println("Операция прошла успешно баланс: " + this.balance + " Руб.");
-             this.balance -= summa;
-             token = true;
+            token = true;
         }
     }
 
     @Override
     public void transfer(Account account, int amount) {
-        if (amount>this.balance){
-            System.out.println("Недостаточно средсв на счете");
+        if (amount>balance){
+            System.out.println("Не достаточно средств");
             token = false;
-        }else {
+        }else{
             account.aadMany(amount);
-            this.pay(amount);
-            System.out.println("перевод завнершен");
+            if (!account.getToken()) {
+                System.out.println("Операция отменена");
+            }else {
+                pay(amount);
+                            }
             token = true;
         }
 
